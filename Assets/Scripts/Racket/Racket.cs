@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Racket : MonoBehaviour
 {
+    [field:Header("> Owner")]
+    [field:SerializeField] public Owner RacketOwner { get; private set; }
+
     [Header("> Movement")]
     [field:SerializeField] private Vector3 minPosition;
     [field:SerializeField] private Vector3 maxPosition;
@@ -17,6 +18,11 @@ public class Racket : MonoBehaviour
     [SerializeField] [CurveRange(0, -1, 1, 1)] private AnimationCurve rotationCurve;
     [Space]
     [SerializeField] [Range(0, 100f)] private float rotationSpeed = 15f;
+
+    [field:Header("> Serves")]
+    [field:SerializeField] public Vector3 ServePosition { get; private set; }
+    [field:Space]
+    [field:SerializeField] public float BallServePositionRange { get; private set; } = 3f;
 
     public Vector3 Velocity => _rigidbody.velocity;
     public Vector3 RigidbodyPosition => _rigidbody.position;
@@ -49,4 +55,9 @@ public class Racket : MonoBehaviour
 
     public float GetMovemenetProgress()
         => ((_rigidbody.position.x - minPosition.x) / (maxPosition.x - minPosition.x));
+
+    public enum Owner{
+        Player,
+        Bot
+    }
 }
