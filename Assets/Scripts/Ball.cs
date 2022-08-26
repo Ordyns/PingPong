@@ -29,9 +29,11 @@ public class Ball : MonoBehaviour
 
     public void ResetBall(){
         _rigidbody.velocity = Vector3.zero;
-        _rigidbody.MovePosition(new Vector3(0, 1, 0));
         _rigidbody.isKinematic = true;
         
+        _rigidbody.MovePosition(new Vector3(0, 1, 0));
+        transform.position = new Vector3(0, 1, 0);
+
         ClearTrail();
     }
 

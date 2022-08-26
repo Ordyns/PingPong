@@ -53,6 +53,8 @@ public class Racket : MonoBehaviour
         _rigidbody.MoveRotation(Quaternion.Lerp(_rigidbody.rotation, Quaternion.Euler(newRotation), rotationSpeed * Time.deltaTime));
     }
 
+    public void SetMovementSpeed(float speed) => MovementSpeed = Mathf.Clamp(speed, 0, 100);
+
     public float GetMovemenetProgress()
         => ((_rigidbody.position.x - minPosition.x) / (maxPosition.x - minPosition.x));
 

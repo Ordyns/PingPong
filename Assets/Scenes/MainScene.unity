@@ -134,6 +134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 57780666}
+  - component: {fileID: 57780667}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -158,6 +159,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &57780667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57780665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c92cf04c2f11c42b9a3873431cfeaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serveManager: {fileID: 642422139}
+  <MinAbsRacketServePositionX>k__BackingField: 0.8
+  <MaxAbsRacketServePositionX>k__BackingField: 2.3
+  aimTarget: {fileID: 620531793}
+  minAimTargetPosition: -1.8
+  maxAimTargetPosition: 1.8
+  racket: {fileID: 1084720865}
+  racketTrigger: {fileID: 5448174747576182817}
+  botServingState: {fileID: 11400000, guid: 21da5410d2a7ae94c95eae6a2a637d92, type: 2}
+  playerServingState: {fileID: 11400000, guid: 4441cd14e08c0b542ae98ee8c6b11315, type: 2}
+  ballHittedByPlayerState: {fileID: 11400000, guid: f7fa9d1ecb166894184b8d1ab75f2131,
+    type: 2}
+  ballHittedByBotState: {fileID: 11400000, guid: 8ac84aef3f7e2e84c9ad41c3065e6972,
+    type: 2}
 --- !u!1 &127201984
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +541,37 @@ Transform:
   m_Father: {fileID: 939414602}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &499529099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499529100}
+  m_Layer: 0
+  m_Name: ===== UI =====
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &499529100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499529099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &620531792
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +649,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &646639967
 GameObject:
@@ -1052,7 +1110,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &977345498
 GameObject:
@@ -1268,37 +1326,37 @@ MonoBehaviour:
   <RacketOwner>k__BackingField: 1
   minPosition: {x: -2.25, y: 0, z: 2}
   maxPosition: {x: 2.25, y: 3, z: 6}
-  <MovementSpeed>k__BackingField: 100
-  rotationThreshold: {x: 0, y: 30, z: 75}
+  <MovementSpeed>k__BackingField: 20
+  rotationThreshold: {x: 0, y: -30, z: 75}
   rotationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -2
-      outSlope: -2
-      tangentMode: 34
+      inSlope: -0.12961645
+      outSlope: -0.12961645
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0.45945945
     - serializedVersion: 3
       time: 0.5
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -3.2755938
+      outSlope: -3.2755938
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.057915032
+      outWeight: 0.11969113
     - serializedVersion: 3
       time: 1
       value: -1
-      inSlope: -2
-      outSlope: -2
-      tangentMode: 34
+      inSlope: -0.24993181
+      outSlope: -0.24993181
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.27799225
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -1431,7 +1489,7 @@ RectTransform:
   m_Children:
   - {fileID: 727853115}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1467,7 +1525,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1419986146
 GameObject:
@@ -2004,7 +2062,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687258581
 GameObject:
