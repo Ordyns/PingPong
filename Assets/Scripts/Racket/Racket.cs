@@ -49,6 +49,9 @@ public class Racket : MonoBehaviour
             y = rotationThreshold.y * rotationCurve.Evaluate(progress),
             z = rotationThreshold.z * rotationCurve.Evaluate(progress)
         };
+
+        if(IsRacketInTableZone())
+            newRotation.z = rotationThreshold.z * rotationCurve.Evaluate(progress < 0.5f ? 0 : 1);
         
         _rigidbody.MoveRotation(Quaternion.Lerp(_rigidbody.rotation, Quaternion.Euler(newRotation), rotationSpeed * Time.deltaTime));
     }
@@ -57,6 +60,9 @@ public class Racket : MonoBehaviour
 
     public float GetMovemenetProgress()
         => ((_rigidbody.position.x - minPosition.x) / (maxPosition.x - minPosition.x));
+
+    private bool IsRacketInTableZone()
+        => _rigidbody.position.IsVectorValuesInRange(Table.StartPoint, Table.EndPoint);
 
     public enum Owner{
         Player,

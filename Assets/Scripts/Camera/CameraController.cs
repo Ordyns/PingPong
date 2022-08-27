@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
     }
 
     private bool IsRacketInDeadZone()
-        => racket.RigidbodyPosition.isVectorValuesInRange(minDeadZone, maxDeadZone);
+        => racket.RigidbodyPosition.IsVectorValuesInRange(minDeadZone, maxDeadZone);
 
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;

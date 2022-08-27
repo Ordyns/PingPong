@@ -18,9 +18,9 @@ public static class VectorExtensions
     public static Vector3 Abs(this Vector3 vector3)
         => new Vector3(Mathf.Abs(vector3.x), Mathf.Abs(vector3.y), Mathf.Abs(vector3.z));
 
-    public static bool isValueInRange(this float value, float min, float max) => value >= min && value <= max;
-    public static bool isVectorValuesInRange(this Vector3 vector, Vector3 min, Vector3 max) 
-        => isValueInRange(vector.x, min.x, max.x) && isValueInRange(vector.y, min.y, max.y) && isValueInRange(vector.z, min.z, max.z);
+    public static bool IsValueInRange(this float value, float min, float max) => value >= min && value <= max;
+    public static bool IsVectorValuesInRange(this Vector3 vector, Vector3 min, Vector3 max) 
+        => IsValueInRange(vector.x, min.x, max.x) && IsValueInRange(vector.y, min.y, max.y) && IsValueInRange(vector.z, min.z, max.z);
 
     public static Vector3 RandomRange(Vector3 min, Vector3 max)
         => new Vector3(Random.Range(min.x, max.x), Random.Range(min.y, max.y), Random.Range(min.z, max.z));
