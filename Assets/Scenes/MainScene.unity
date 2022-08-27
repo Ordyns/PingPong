@@ -296,6 +296,9 @@ MonoBehaviour:
   verticalServeForce: -3
   velocityStrength: 0.25
   maxVelocity: {x: 3, y: 3, z: 3}
+  ballPassageCompensation: 1
+  ballPassageThreshold: 0
+  distanceFromBallToRacketAfterPassage: 0.1
 --- !u!65 &164856942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1552,6 +1555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1419986147}
   - component: {fileID: 1419986148}
+  - component: {fileID: 1419986149}
   m_Layer: 0
   m_Name: Net Collider
   m_TagString: Untagged
@@ -1587,6 +1591,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.4125, y: 0.3801605, z: 0.034829617}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1419986149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419986146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053e9f28bc7151440aadbeec94a91257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1449665682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2727,6 +2743,9 @@ MonoBehaviour:
   verticalServeForce: -3
   velocityStrength: 0
   maxVelocity: {x: 3, y: 3, z: 3}
+  ballPassageCompensation: 0
+  ballPassageThreshold: 0
+  distanceFromBallToRacketAfterPassage: 0.25
 --- !u!4 &5448174747576182818
 Transform:
   m_ObjectHideFlags: 0

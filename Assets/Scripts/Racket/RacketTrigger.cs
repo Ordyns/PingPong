@@ -21,6 +21,11 @@ public class RacketTrigger : MonoBehaviour
     [SerializeField] private float velocityStrength = 1;
     [SerializeField] private Vector3 maxVelocity = new Vector3(3, 3, 3);
 
+    [Header("> Ball")]
+    [SerializeField] private bool ballPassingCompensation;
+    [SerializeField] private float ballPassingThreshold;
+    [SerializeField] private float distanceFromBallToRacketAfterPassing = 0.1f;
+
     private void OnTriggerEnter(Collider other) => OnTrigger(other);
     private void OnTriggerStay(Collider other) => OnTrigger(other);
     private void OnTriggerExit(Collider other) => OnTrigger(other);
@@ -30,6 +35,7 @@ public class RacketTrigger : MonoBehaviour
             ball.PrepareToHitByRacket(racket.RacketOwner);
 
             SetBallVelocity(ball);
+            CheckBallPassing(ball);
 
             BallTriggered?.Invoke(ball);
         }
@@ -44,5 +50,19 @@ public class RacketTrigger : MonoBehaviour
         float ballVerticalForce = isServing ? verticalServeForce : verticalForce;
 
         ball.SetVelocity(direction.normalized * ballForce + new Vector3(velocity, ballVerticalForce, 0));
+    }
+
+    private void CheckBallPassing(Ball ball){
+        if(ballPassingCompensation){
+            if(racket.transform.position.z - ball.transform.position.z > ballPassingThreshold){
+                Vector3 newPosition = new Vector3(){
+                    x = ball.RigidbodyPosition.x,
+                    y = ball.RigidbodyPosition.y,
+                    z = racket.RigidbodyPosition.z + distanceFromBallToRacketAfterPassing
+                };
+
+                ball.SetRigidbodyPosition(newPosition);
+            }
+        }
     }
 }
