@@ -2586,8 +2586,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ecc5fbb9cd84e94bb77eb289636e47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <LastHitter>k__BackingField: 0
+  <BallState>k__BackingField: 0
   trail: {fileID: 301058644}
   movementSpeedDuringServe: 5
+  collisionParticleSystem: {fileID: 1302981398156839732, guid: 0ec53fce450b44e44ac2c5542e3e088e,
+    type: 3}
+  deathZoneCollisionParticleSystem: {fileID: 1302981398156839732, guid: 551f4a416c2e4584c8b8baa855f72204,
+    type: 3}
+  _hittedTableZonesOwners: 
+  _rigidbody: {fileID: 0}
 --- !u!1 &2100857530
 GameObject:
   m_ObjectHideFlags: 0
