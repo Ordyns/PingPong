@@ -6,9 +6,9 @@ using DG.Tweening;
 [CreateAssetMenu(fileName = nameof(BotServingState), menuName = "Bot/" + nameof(BotServingState))]
 public class BotServingState : BotState
 {
+    [Space]
     [SerializeField] private float startDelay = 1f;
     [Space]
-    [SerializeField] [Range(0.01f, 100f)] private float movementSpeed = 10f;
     [SerializeField] private Ease movementEase;
 
     [Header("Serve")]
@@ -45,7 +45,7 @@ public class BotServingState : BotState
 
         Bot.MoveAimTargetTo(xPosition * -1);
 
-        float duration = Vector3.Distance(Bot.Racket.RigidbodyPosition, _racketServePosition) / movementSpeed;
+        float duration = Vector3.Distance(Bot.Racket.RigidbodyPosition, _racketServePosition) / RacketMovementSpeed;
         Bot.Racket.transform.DOLocalMove(_racketServePosition, duration).SetEase(movementEase).OnComplete(() => MoveToBall());
     }
 

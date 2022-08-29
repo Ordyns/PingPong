@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class BotState : ScriptableObject
 {
-    public bool isInitialized { get; protected set; }
+    public bool IsInitialized { get; protected set; }
+
+    [field:SerializeField] [field:Range(0, 100f)] protected float RacketMovementSpeed { get; private set; }
 
     protected Bot Bot;
     protected BotStateMachine StateMachine;
@@ -17,12 +19,12 @@ public abstract class BotState : ScriptableObject
         Ball = ball;
         Bot = bot;
 
-        isInitialized = true;
+        IsInitialized = true;
     }
 
     public virtual void Enter(){
         StartTime = Time.time;
-        Bot.ResetRacketMovementSpeed();
+        Bot.Racket.SetMovementSpeed(RacketMovementSpeed);
     }
 
     public virtual void LogicUpdate() { }

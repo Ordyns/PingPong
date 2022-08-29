@@ -1,22 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
     public event System.Action BallCollided;
     public event System.Action<Racket.Owner> BallHittedByRacket;
-    public event System.Action BallEnteredIntoDeathZone;
+    public event System.Action<BallDeathZone.ZoneType> BallEnteredIntoDeathZone;
 
     public Racket.Owner LastHitter { get; private set; }
     public State BallState { get; private set; }
 
     public Vector3 RigidbodyPosition => _rigidbody.position;
+    public ReadOnlyCollection<Racket.Owner> HittedTableZonesOwners => _hittedTableZonesOwners.AsReadOnly();
 
     [SerializeField] private TrailRenderer trail;
     [Space]
     [SerializeField] [Range(0, 100f)] private float movementSpeedDuringServe = 5;
 
+    private List<Racket.Owner> _hittedTableZonesOwners = new List<Racket.Owner>();
     private Rigidbody _rigidbody;
 
     private void Awake() {
@@ -24,6 +27,11 @@ public class Ball : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
+        if(other.transform.TryGetComponent<TableZone>(out TableZone tableZone)){
+            if(_hittedTableZonesOwners.Contains(tableZone.ZoneOwner) == false)
+                _hittedTableZonesOwners.Add(tableZone.ZoneOwner);
+        }
+
         BallCollided?.Invoke();
     }
 
@@ -33,6 +41,8 @@ public class Ball : MonoBehaviour
         
         _rigidbody.MovePosition(new Vector3(0, 1, 0));
         transform.position = new Vector3(0, 1, 0);
+
+        _hittedTableZonesOwners = new List<Racket.Owner>();
 
         ClearTrail();
     }
@@ -47,6 +57,7 @@ public class Ball : MonoBehaviour
             BallState = State.Serving;
 
         BallHittedByRacket?.Invoke(racketOwner);
+        _hittedTableZonesOwners = new List<Racket.Owner>();
 
         LastHitter = racketOwner;
         _rigidbody.isKinematic = false;
@@ -54,10 +65,14 @@ public class Ball : MonoBehaviour
         ClearTrail();
     }
 
-    public void DeathZoneTriggered(){
-        BallState = State.Unplayable;
+    public void SuccessfullyServed(){
+        if(BallState == State.Serving)
+            BallState = State.Default;
+    }
 
-        BallEnteredIntoDeathZone?.Invoke();
+    public void DeathZoneTriggered(BallDeathZone.ZoneType zoneType){
+        BallEnteredIntoDeathZone?.Invoke(zoneType);
+        BallState = State.Unplayable;
     }
 
     public void ClearTrail() => trail.Clear();

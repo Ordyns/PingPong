@@ -48,12 +48,12 @@ public class Bot : MonoBehaviour
         if(_ball.BallState == Ball.State.Default || _ball.BallState == Ball.State.Serving)
             _stateMachine.ChangeState(_ball.LastHitter == Racket.RacketOwner ? ballHittedByBotState : ballHittedByPlayerState);
 
-        if(_stateMachine.CurrentState.isInitialized)
+        if(_stateMachine.CurrentState.IsInitialized)
             _stateMachine.CurrentState.LogicUpdate();
     }
 
     private void FixedUpdate() {
-        if(_stateMachine.CurrentState.isInitialized)
+        if(_stateMachine.CurrentState.IsInitialized)
             _stateMachine.CurrentState.PhysicsUpdate();
     }
 

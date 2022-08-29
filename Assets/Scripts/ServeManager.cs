@@ -5,6 +5,7 @@ using UnityEngine;
 public class ServeManager : MonoBehaviour
 {
     public event System.Action<Racket.Owner> NewServeStarted;
+    public event System.Action<Racket.Owner> UnsuccessfulServe;
 
     [field:SerializeField] public Ball Ball { get; private set; }
     [Space]
@@ -22,7 +23,10 @@ public class ServeManager : MonoBehaviour
     private bool _overtime;
 
     private void Start() {
-        Ball.BallEnteredIntoDeathZone += () => StartCoroutine(WaitForDelayBeforeServe());
+        Ball.BallCollided += OnBallCollided;
+        Ball.BallHittedByRacket += OnBallHittedByRacket;
+        Ball.BallEnteredIntoDeathZone += (zoneType) => StartCoroutine(WaitForDelayBeforeServe());
+        UnsuccessfulServe += (serveOwner) => StartCoroutine(WaitForDelayBeforeServe());
         NextServe();
     }
 
@@ -54,4 +58,27 @@ public class ServeManager : MonoBehaviour
             Ball.MoveSmoothlyTo(new Vector3(xPosition, _currentRacket.ServePosition.y, _currentRacket.ServePosition.z));
         }
     }
+
+    private void OnBallHittedByRacket(Racket.Owner racketOwner){
+        if(Ball.BallState == Ball.State.Serving && IsSomeoneServing && racketOwner != CurrentServeOwner){
+            bool isSuccessfullyServed = IsServeTechnicallyCorrect();
+            
+            if(isSuccessfullyServed)
+                Ball.SuccessfullyServed();
+            else
+                UnsuccessfulServe?.Invoke(racketOwner);
+
+            IsSomeoneServing = false;
+        }
+    }
+
+    private void OnBallCollided(){
+        if(Ball.BallState == Ball.State.Serving && IsSomeoneServing){
+            var hittedZonesOwners = Ball.HittedTableZonesOwners;
+            if(hittedZonesOwners.Count == 1 && hittedZonesOwners.Contains(Ball.LastHitter) == false)
+                UnsuccessfulServe?.Invoke(CurrentServeOwner);
+        }
+    }
+        
+    public bool IsServeTechnicallyCorrect() => Ball.HittedTableZonesOwners.Count == 2;
 }

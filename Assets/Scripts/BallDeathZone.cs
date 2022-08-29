@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class BallDeathZone : MonoBehaviour
 {
+    [SerializeField] private ZoneType zoneType;
+
     private void OnTriggerEnter(Collider other) {
         if(other.TryGetComponent<Ball>(out Ball ball))
             BallDetected(ball);
@@ -19,6 +21,12 @@ public class BallDeathZone : MonoBehaviour
         if(ball.BallState == Ball.State.Unplayable)
             return;
 
-        ball.DeathZoneTriggered();
+        ball.DeathZoneTriggered(zoneType);
+    }
+
+    public enum ZoneType{
+        GameBorder,
+        Net,
+        Other
     }
 }

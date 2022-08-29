@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3625c610d035e2f4f8d22e54bb832095, type: 3}
   m_Name: BallHittedByBotState
   m_EditorClassIdentifier: 
+  <RacketMovementSpeed>k__BackingField: 1.25
   minStartPositionOffset: {x: -0.5, y: 0, z: 0}
   maxStartPositionOffset: {x: 0.5, y: 0, z: 0}
-  movementSpeed: 1.25

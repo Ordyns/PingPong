@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34529213f2ed8e4da68c1c77696525e, type: 3}
   m_Name: BallHittedByPlayerState
   m_EditorClassIdentifier: 
+  <RacketMovementSpeed>k__BackingField: 20

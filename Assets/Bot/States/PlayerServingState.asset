@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528069fafbf8cce428434c963e70fea1, type: 3}
   m_Name: PlayerServingState
   m_EditorClassIdentifier: 
+  <RacketMovementSpeed>k__BackingField: 1.25
   minStartPositionOffset: {x: -0.25, y: 0, z: 0}
   maxStartPositionOffset: {x: 0.25, y: 0, z: 0}
-  movementSpeed: 1.25
