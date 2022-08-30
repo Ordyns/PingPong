@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Ball : MonoBehaviour
 {
     public event System.Action BallCollided;
