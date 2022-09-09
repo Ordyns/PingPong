@@ -18,13 +18,9 @@ public class Bot : MonoBehaviour
     
     [Header("> Racket")]
     [SerializeField] private Racket racket;
-    [SerializeField] private RacketTrigger racketTrigger;
 
-    [Header("> State machine")]
-    [SerializeField] private BotState botServingState;
-    [SerializeField] private BotState playerServingState;
-    [SerializeField] private BotState ballHittedByPlayerState;
-    [SerializeField] private BotState ballHittedByBotState;
+    [Header("> Difficulty")]
+    [SerializeField] private BotDifficulty difficulty;
 
     private BotStateMachine _stateMachine;
 
@@ -36,17 +32,23 @@ public class Bot : MonoBehaviour
         _ball = serveManager.Ball;
         _startRacketMovementSpeed = racket.MovementSpeed;
 
-        _stateMachine = new BotStateMachine(this, _ball, ballHittedByPlayerState);
+        _stateMachine = new BotStateMachine(this, _ball, difficulty.BallHittedByPlayerState);
         serveManager.NewServeStarted += OnNewServeStarted;
     }
 
+    public void SetDifficulty(BotDifficulty difficulty){
+        this.difficulty = difficulty;
+    }
+
     private void OnNewServeStarted(Racket.Owner owner){
-        _stateMachine.ChangeState(owner == racket.RacketOwner ? botServingState : playerServingState);
+        _stateMachine.ChangeState(owner == racket.RacketOwner ? difficulty.BotServingState : difficulty.PlayerServingState);
     }
 
     private void Update() {
-        if(_ball.BallState == Ball.State.Default || _ball.BallState == Ball.State.Serving)
-            _stateMachine.ChangeState(_ball.LastHitter == Racket.RacketOwner ? ballHittedByBotState : ballHittedByPlayerState);
+        if(_ball.BallState == Ball.State.Default || _ball.BallState == Ball.State.Serving){
+            BotState state = _ball.LastHitter == Racket.RacketOwner ? difficulty.BallHittedByBotState : difficulty.BallHittedByPlayerState;
+            _stateMachine.ChangeState(state);
+        }
 
         if(_stateMachine.CurrentState.IsInitialized)
             _stateMachine.CurrentState.LogicUpdate();

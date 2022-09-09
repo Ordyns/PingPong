@@ -16,18 +16,17 @@ public class Ball : MonoBehaviour
     public Vector3 RigidbodyPosition => _rigidbody.position;
     public ReadOnlyCollection<Racket.Owner> HittedTableZonesOwners => _hittedTableZonesOwners.AsReadOnly();
 
-    [SerializeField] private TrailRenderer trail;
-    [Space]
     [SerializeField] [Range(0, 100f)] private float movementSpeedDuringServe = 5;
 
-    [Header("Particles")]
-    [SerializeField] private ParticleSystem collisionParticleSystem;
-    [SerializeField] private ParticleSystem deathZoneCollisionParticleSystem;
+    [Header("Visual")]
+    [SerializeField] private BallEffects ballEffects;
+    [Space]
+    [SerializeField] private TrailRenderer trail;
 
     private List<Racket.Owner> _hittedTableZonesOwners = new List<Racket.Owner>();
     private Rigidbody _rigidbody;
 
-    private void Awake() {
+    private void OnValidate() {
         _rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -36,7 +35,7 @@ public class Ball : MonoBehaviour
             if(_hittedTableZonesOwners.Contains(tableZone.ZoneOwner) == false)
                 _hittedTableZonesOwners.Add(tableZone.ZoneOwner);
 
-            InstantiateParticle(collisionParticleSystem);
+            ballEffects.OnCollision();
         }
 
         BallCollided?.Invoke();
@@ -81,12 +80,7 @@ public class Ball : MonoBehaviour
         BallEnteredIntoDeathZone?.Invoke(zoneType);
         BallState = State.Unplayable;
 
-        InstantiateParticle(deathZoneCollisionParticleSystem);
-    }
-
-    private void InstantiateParticle(ParticleSystem particlePrefab){
-        ParticleSystem particleSystem = Instantiate(particlePrefab, transform.position, Quaternion.identity);
-        Destroy(particleSystem.gameObject, particleSystem.main.duration);
+        ballEffects.OnDeathCollision();
     }
 
     public void ClearTrail() => trail.Clear();

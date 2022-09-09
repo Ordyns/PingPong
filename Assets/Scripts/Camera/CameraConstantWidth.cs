@@ -15,8 +15,11 @@ public class CameraConstantWidth : MonoBehaviour
     private float _horizontalFov;
     private float _targetAspect;
 
-    private void Awake(){
+    private void OnValidate() {
         _camera = GetComponent<Camera>();
+    }
+
+    private void Awake(){
         _initialSize = _camera.orthographicSize;
 
         _targetAspect = defaultResolution.x / defaultResolution.y;

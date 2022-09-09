@@ -19,12 +19,6 @@ public class BotServingState : BotState
     private Vector3 _racketServePosition;
     
     private bool isRacketAtTargetPosition;
-    private bool isServeAllowed;
-
-    // debug
-    private float _movemenetDurationToBall;
-    private float _time;
-    private Vector3 _ballPosition;
 
     public override void Enter(){
         base.Enter();
@@ -53,12 +47,7 @@ public class BotServingState : BotState
         isRacketAtTargetPosition = true;
 
         float duration = Vector3.Distance(Bot.Racket.RigidbodyPosition, Ball.RigidbodyPosition) / serveMovementSpeed;
-        Bot.Racket.transform.DOLocalMove(Ball.RigidbodyPosition, duration).SetEase(serveMovementEase).SetDelay(delayBeforeServe).OnUpdate(() => {
-            _time += Time.deltaTime;
-        });
-
-        _ballPosition = Ball.RigidbodyPosition;
-        _movemenetDurationToBall = duration;
+        Bot.Racket.transform.DOLocalMove(Ball.RigidbodyPosition, duration).SetEase(serveMovementEase).SetDelay(delayBeforeServe);
     }
 
     public override void LogicUpdate() => base.LogicUpdate();
