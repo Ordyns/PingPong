@@ -5,9 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = nameof(BallHittedByPlayerState), menuName = "Bot/" + nameof(BallHittedByPlayerState))]
 public class BallHittedByPlayerState : BotState
 {
+    [Space]
+    [SerializeField] private float minSpeedOffset;
+    [SerializeField] private float maxSpeedOffset;
+
     public override void Enter(){
         base.Enter();
 
+        float offset = Random.Range(minSpeedOffset, maxSpeedOffset);
+        Bot.Racket.SetMovementSpeed(RacketMovementSpeed + offset);
+        Debug.Log(RacketMovementSpeed + offset);
         Bot.MoveAimTargetToRandomPosition();
     }
 
@@ -24,5 +31,7 @@ public class BallHittedByPlayerState : BotState
 
     public override void Exit(){
         base.Exit();
+
+
     }
 }

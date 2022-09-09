@@ -209,7 +209,7 @@ MonoBehaviour:
   minAimTargetPosition: -1.8
   maxAimTargetPosition: 1.8
   racket: {fileID: 1084720865}
-  difficulty: {fileID: 11400000, guid: 209e84ac0c4c0764e9abb6e99a926c9b, type: 2}
+  difficulty: {fileID: 11400000, guid: dd2898c553088a44aa75589da1c4d4eb, type: 2}
 --- !u!1 &127201984
 GameObject:
   m_ObjectHideFlags: 0

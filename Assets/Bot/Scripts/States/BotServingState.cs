@@ -12,7 +12,7 @@ public class BotServingState : BotState
     [SerializeField] private Ease movementEase;
 
     [Header("Serve")]
-    [SerializeField] [Range(0.01f, 100f)] private float serveMovementSpeed = 10f;
+    [SerializeField] [Range(0.0001f, 100f)] private float serveMovementSpeed = 10f;
     [SerializeField] private float delayBeforeServe = 0.25f;
     [SerializeField] private Ease serveMovementEase;
 
@@ -40,6 +40,7 @@ public class BotServingState : BotState
         Bot.MoveAimTargetTo(xPosition * -1);
 
         float duration = Vector3.Distance(Bot.Racket.RigidbodyPosition, _racketServePosition) / RacketMovementSpeed;
+        Debug.Log("duration: " + duration);
         Bot.Racket.transform.DOLocalMove(_racketServePosition, duration).SetEase(movementEase).OnComplete(() => MoveToBall());
     }
 

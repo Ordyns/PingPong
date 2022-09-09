@@ -11,8 +11,6 @@ public abstract class BotState : ScriptableObject
     protected Bot Bot;
     protected BotStateMachine StateMachine;
     protected Ball Ball;
-    
-    protected float StartTime;
 
     public void Initialize(Bot bot, Ball ball, BotStateMachine stateMachine){
         StateMachine = stateMachine;
@@ -23,7 +21,6 @@ public abstract class BotState : ScriptableObject
     }
 
     public virtual void Enter(){
-        StartTime = Time.time;
         Bot.Racket.SetMovementSpeed(RacketMovementSpeed);
     }
 

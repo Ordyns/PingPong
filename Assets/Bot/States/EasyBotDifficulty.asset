@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4272684bae5fb45b10b45e8d3717a9, type: 3}
+  m_Name: EasyBotDifficulty
+  m_EditorClassIdentifier: 
+  <BotServingState>k__BackingField: {fileID: 11400000, guid: 99165edf38f5a0c42ae7ffc20025e4d8,
+    type: 2}
+  <PlayerServingState>k__BackingField: {fileID: 11400000, guid: cc8bfe2c810789140a6f1d87fa34423b,
+    type: 2}
+  <BallHittedByPlayerState>k__BackingField: {fileID: 11400000, guid: bce4b5d5381e59f438a50e76abc11eb1,
+    type: 2}
+  <BallHittedByBotState>k__BackingField: {fileID: 11400000, guid: 374607aff37a80d4486f42d7b84e997d,
+    type: 2}
