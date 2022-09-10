@@ -14,7 +14,6 @@ public class BallHittedByPlayerState : BotState
 
         float offset = Random.Range(minSpeedOffset, maxSpeedOffset);
         Bot.Racket.SetMovementSpeed(RacketMovementSpeed + offset);
-        Debug.Log(RacketMovementSpeed + offset);
         Bot.MoveAimTargetToRandomPosition();
     }
 

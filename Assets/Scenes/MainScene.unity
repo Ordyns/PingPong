@@ -209,7 +209,7 @@ MonoBehaviour:
   minAimTargetPosition: -1.8
   maxAimTargetPosition: 1.8
   racket: {fileID: 1084720865}
-  difficulty: {fileID: 11400000, guid: dd2898c553088a44aa75589da1c4d4eb, type: 2}
+  difficulty: {fileID: 11400000, guid: 209e84ac0c4c0764e9abb6e99a926c9b, type: 2}
 --- !u!1 &127201984
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,7 +2540,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 4.1586112e+21, w: 9.3282995e-29}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 9.7796856e+11}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

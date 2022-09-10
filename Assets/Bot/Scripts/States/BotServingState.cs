@@ -40,7 +40,6 @@ public class BotServingState : BotState
         Bot.MoveAimTargetTo(xPosition * -1);
 
         float duration = Vector3.Distance(Bot.Racket.RigidbodyPosition, _racketServePosition) / RacketMovementSpeed;
-        Debug.Log("duration: " + duration);
         Bot.Racket.transform.DOLocalMove(_racketServePosition, duration).SetEase(movementEase).OnComplete(() => MoveToBall());
     }
 
