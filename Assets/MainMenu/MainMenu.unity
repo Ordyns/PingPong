@@ -1680,7 +1680,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuCamera: {fileID: 1475797771}
   ui: {fileID: 1451488295}
-  gameSceneName: MainScene
 --- !u!4 &1451488297
 Transform:
   m_ObjectHideFlags: 0
@@ -1761,7 +1760,7 @@ MonoBehaviour:
       Ease: 0
     RotationAnimation:
       StartValue: {x: 0, y: 0, z: 0}
-      TargetValue: {x: 0, y: -45, z: 0}
+      TargetValue: {x: 350, y: 270, z: 0}
       Duration: 0.75
       Ease: 15
   startFovAnimation:
@@ -2348,7 +2347,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 9.7796856e+11}
+  m_BoundingSphereOverride: {x: 0, y: 4.5916e-41, z: Infinity, w: Infinity}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

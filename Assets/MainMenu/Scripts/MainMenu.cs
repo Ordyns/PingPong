@@ -5,8 +5,6 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private MenuCamera menuCamera;
     [SerializeField] private MainMenuUI ui;
-    [Space]
-    [SerializeField] private string gameSceneName;
 
     public void MoveToDefault(){
         menuCamera.MoveToDefault();
@@ -19,6 +17,6 @@ public class MainMenu : MonoBehaviour
     }
 
     public void LoadGame(BotDifficulty difficulty){
-        SceneManager.LoadScene(gameSceneName);
+        ScenesLoader.LoadQuickGame();
     }
 }
