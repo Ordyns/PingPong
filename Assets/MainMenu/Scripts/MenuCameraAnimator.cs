@@ -26,14 +26,4 @@ public class MenuCameraAnimator : MonoBehaviour
     public void SetRotation(Vector3 rotation){
         cameraParent.eulerAngles = rotation;
     }
-
-    [System.Serializable]
-    public class AnimationSettings<T>
-    {
-        public T StartValue;
-        public T TargetValue;
-        [Space]
-        public float Duration;
-        public Ease Ease;
-    }
 }

@@ -19,9 +19,7 @@ public class MenuCamera : MonoBehaviour
         animator.SetRotation(startAnimation.RotationAnimation.StartValue);
     }
 
-    [NaughtyAttributes.Button]
     private void Start() {
-        Awake();
         MoveToDefault();
     }
 

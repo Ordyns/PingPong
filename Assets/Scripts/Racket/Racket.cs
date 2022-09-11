@@ -30,8 +30,11 @@ public class Racket : MonoBehaviour
 
     private Rigidbody _rigidbody;
 
-    private void Awake() {
+    private void OnValidate() {
         _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Awake() {
         _rigidbody.position = StartPosition = transform.position;
     }
 

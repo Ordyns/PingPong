@@ -4,29 +4,29 @@ using DG.Tweening;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup playButton;
-    [SerializeField] private CanvasGroup backButton;
+    [SerializeField] private MenuCamera menuCamera;
     [Space]
-    [SerializeField] private CanvasGroup difficultySelection;
+    [SerializeField] private MenuPage mainPage;
+    [SerializeField] private MenuPage difficultySelectionPage;
+
+    private MainMenuViewModel _viewModel;
 
     private void Awake() {
-        difficultySelection.alpha = 0;
-        backButton.alpha = 0;
+        mainPage.OpenInstantly();
+        difficultySelectionPage.CloseInstantly();   
     }
 
     public void OpenDifficultySelection(){
-        AnimateFade(playButton, 0);
-        AnimateFade(difficultySelection, 1);
-        AnimateFade(backButton, 1);
+        difficultySelectionPage.Open();
+        mainPage.Close();
+
+        menuCamera.MoveToDifficultySelection();
     }
 
-    public void CloseAll(){
-        AnimateFade(playButton, 1);
-        AnimateFade(difficultySelection, 0);
-        AnimateFade(backButton, 0);
-    }
+    public void MoveToMainPage(){
+        mainPage.Open();
+        difficultySelectionPage.Close();
 
-    private void AnimateFade(CanvasGroup canvasGroup, float targetAlpha){
-        canvasGroup.DOFade(targetAlpha, 0.2f).SetEase(Ease.InOutSine);
+        menuCamera.MoveToDefault();
     }
 }
