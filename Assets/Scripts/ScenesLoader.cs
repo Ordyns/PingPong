@@ -6,7 +6,7 @@ public class ScenesLoader : MonoBehaviour
     [SerializeField] private ScenesTransitions scenesTransitions;
 
     private const string MainMenuSceneName = "MainMenu";
-    private const string QuickGameSceneName = "MainScene";
+    private const string QuickGameSceneName = "QuickGame";
 
     private static ScenesLoader _instance;
 

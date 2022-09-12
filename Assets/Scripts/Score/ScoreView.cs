@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class ScoreView : MonoBehaviour
 {
-    [Header("ViewModel")]
-    [SerializeField] private ScoreViewModel viewModel;
-
     [Header("Player")]
     [SerializeField] private TextMeshProUGUI playerPointsText;
     [SerializeField] private TextMeshProUGUI playerGamesText;
@@ -16,9 +11,12 @@ public class ScoreView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI enemyPointsText;
     [SerializeField] private TextMeshProUGUI enemyGamesText;
 
-    void Start(){
-        viewModel.PlayerScore.Changed += () => UpdateScoreTexts(viewModel.PlayerScore, playerPointsText, playerGamesText);
-        viewModel.EnemyScore.Changed += () => UpdateScoreTexts(viewModel.EnemyScore, enemyPointsText, enemyGamesText);
+    private ScoreViewModel _viewModel;
+
+    public void Init(ScoreViewModel scoreViewModel){
+        _viewModel = scoreViewModel;
+        _viewModel.PlayerScore.Changed += () => UpdateScoreTexts(_viewModel.PlayerScore, playerPointsText, playerGamesText);
+        _viewModel.EnemyScore.Changed += () => UpdateScoreTexts(_viewModel.EnemyScore, enemyPointsText, enemyGamesText);
     }
 
     private void UpdateScoreTexts(ScoreViewModel.Score score, TextMeshProUGUI pointsText, TextMeshProUGUI gamesText){
