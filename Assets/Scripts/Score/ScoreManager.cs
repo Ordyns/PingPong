@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 public class ScoreManager
 {
-    private List<IScoreHandler> _scoreHandlers = new List<IScoreHandler>();
+    private LinkedList<IScoreHandler> _scoreHandlers = new LinkedList<IScoreHandler>();
 
-    public void Subscribe(IScoreHandler scoreHandler) => _scoreHandlers.Add(scoreHandler);
+    public void Subscribe(IScoreHandler scoreHandler) => _scoreHandlers.AddLast(scoreHandler);
     public void Unsubscribe(IScoreHandler scoreHandler) => _scoreHandlers.Remove(scoreHandler);
 
     private ScoreViewModel _scoreViewModel;
@@ -45,19 +45,17 @@ public class ScoreManager
     }
 
     private void AddPoint(Racket.Owner ballLastHitter, bool addPointToLastHiiter){
-        if(ballLastHitter == Racket.Owner.Player && addPointToLastHiiter == false)
-            _scoreViewModel.AddPointToEnemy();
-        else if(ballLastHitter == Racket.Owner.Bot && addPointToLastHiiter)
-            _scoreViewModel.AddPointToEnemy();
+        if(addPointToLastHiiter)
+            _scoreViewModel.AddPointTo(ballLastHitter);
         else
-            _scoreViewModel.AddPointToPlayer();
+            _scoreViewModel.AddPointTo(ballLastHitter != Racket.Owner.Player ? Racket.Owner.Player : ballLastHitter);
 
         ScoreUpdated();
     }
 
     private void ScoreUpdated(){
-        for(int i = 0; i < _scoreHandlers.Count; i++)
-            _scoreHandlers[i].ScoreUpdated();
+        foreach(var handler in _scoreHandlers)
+            handler.ScoreUpdated();
     }
 }
 
@@ -65,5 +63,4 @@ public enum RoundEndReason{
     BallHitNet,
     BallLeftTheGamingArea,
     UnsuccessfulServe,
-    Other
 }

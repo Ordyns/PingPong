@@ -9,24 +9,20 @@ public class ScoreViewModel : ViewModel
     public Score PlayerScore { get; private set; } = new Score();
     public Score EnemyScore { get; private set; } = new Score();
 
-    public bool Overtime { get; private set; }
-    
-    public void AddPointToPlayer() {
-        PlayerScore.Points.Value++;
-        CalculateScore(PlayerScore);
-    }
+    public bool IsOvertime { get; private set; }
 
-    public void AddPointToEnemy(){
-        EnemyScore.Points.Value++;
-        CalculateScore(EnemyScore);
+    public void AddPointTo(Racket.Owner racketOwner){
+        Score score = racketOwner == Racket.Owner.Player ? PlayerScore : EnemyScore;
+        score.Points.Value++;
+        CalculateScore(score);
     }
 
     private void CalculateScore(Score score){
         if(PlayerScore.Points == 10 && EnemyScore.Points == 10)
-            Overtime = true;
+            IsOvertime = true;
 
-        bool isOvertimeFinished = Overtime && Math.Abs(PlayerScore.Points.Value - EnemyScore.Points.Value) >= 2;
-        if((score.Points == 11 && Overtime == false) || isOvertimeFinished){
+        bool isOvertimeFinished = IsOvertime && Math.Abs(PlayerScore.Points.Value - EnemyScore.Points.Value) >= 2;
+        if((score.Points == 11 && IsOvertime == false) || isOvertimeFinished){
             PlayerScore.Points.Value = EnemyScore.Points.Value = 0;
 
             score.Games.Value++;

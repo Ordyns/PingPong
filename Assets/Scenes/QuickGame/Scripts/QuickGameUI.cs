@@ -4,6 +4,7 @@ public class QuickGameUI : MonoBehaviour
 {
     [SerializeField] private ScoreView scoreView;
     [SerializeField] private OverlayTitle overlayTitle;
+    [SerializeField] private OverlayTitleFactory overlayTitleFactory;
 
     public void Init(ScoreViewModel scoreViewModel){
         scoreView.Init(scoreViewModel);
@@ -12,9 +13,6 @@ public class QuickGameUI : MonoBehaviour
     }
 
     private void OnRoundEnded(RoundEndReason roundEndReason){
-        switch(roundEndReason){
-            case RoundEndReason.BallHitNet: overlayTitle.ShowNewTitle("Net!"); break;
-            case RoundEndReason.UnsuccessfulServe: overlayTitle.ShowNewTitle("Bad serve"); break;
-        }
+        overlayTitle.ShowNewTitle(overlayTitleFactory.GetTitle(roundEndReason));
     }
 }
