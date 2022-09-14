@@ -4,6 +4,7 @@ using MVVM;
 public class ScoreViewModel : ViewModel
 {
     public event Action MatchFinished;
+    public event Action<RoundEndReason> RoundEnded;
 
     public Score PlayerScore { get; private set; } = new Score();
     public Score EnemyScore { get; private set; } = new Score();
@@ -34,6 +35,8 @@ public class ScoreViewModel : ViewModel
                 MatchFinished?.Invoke();
         }
     }
+
+    public void OnRoundEnded(RoundEndReason roundEndReason) => RoundEnded?.Invoke(roundEndReason);
 
     public class Score
     {

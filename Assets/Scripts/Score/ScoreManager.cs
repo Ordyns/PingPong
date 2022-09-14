@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class ScoreManager
 {
@@ -19,16 +16,20 @@ public class ScoreManager
         _serveManager = serveManager;
         _ball = serveManager.Ball;
 
-        _ball.BallEnteredIntoDeathZone += (zoneType) => EndRound(RoundEndReason.BallLeftTheGamingArea);
         _serveManager.UnsuccessfulServe += (serveOwner) => EndRound(RoundEndReason.UnsuccessfulServe);
+        _ball.BallEnteredIntoDeathZone += (zoneType) => {
+            EndRound(zoneType == BallDeathZone.ZoneType.Net ? RoundEndReason.BallHitNet : RoundEndReason.BallLeftTheGamingArea);
+        };
     }
 
-    public void EndRound(RoundEndReason reason){
+    private void EndRound(RoundEndReason reason){
         switch(reason){
             case RoundEndReason.BallHitNet: AddPoint(_ball.LastHitter, false); break;
             case RoundEndReason.UnsuccessfulServe: AddPoint(_serveManager.CurrentServeOwner, false); break;
             case RoundEndReason.BallLeftTheGamingArea: OnBallLeftTheGamingArea(); break;
         }
+
+        _scoreViewModel.OnRoundEnded(reason);
     }
 
     public void OnBallLeftTheGamingArea(){

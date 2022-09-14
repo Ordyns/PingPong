@@ -657,6 +657,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1362949228}
+  - {fileID: 1494484364}
   m_Father: {fileID: 856668302}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -790,7 +791,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 787500621}
-  - {fileID: 1494484364}
   m_Father: {fileID: 1154482109}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1846,26 +1846,30 @@ MonoBehaviour:
   animator: {fileID: 1687258588}
   startAnimation:
     FovAnimation:
+      AnimateFromStartValue: 0
       StartValue: 10
       TargetValue: 60
       Duration: 1
       Ease: 27
     RotationAnimation:
+      AnimateFromStartValue: 0
       StartValue: {x: -37.98, y: 90, z: 0}
       TargetValue: {x: 0, y: 0, z: 0}
       Duration: 1.25
       Ease: 9
   difficultySelectionAnimation:
     FovAnimation:
+      AnimateFromStartValue: 0
       StartValue: 38
-      TargetValue: 60
+      TargetValue: 38
       Duration: 0.5
       Ease: 9
     RotationAnimation:
+      AnimateFromStartValue: 0
       StartValue: {x: 0, y: 0, z: 0}
-      TargetValue: {x: 350, y: 270, z: 0}
-      Duration: 0.75
-      Ease: 15
+      TargetValue: {x: 52.02, y: 0, z: 0}
+      Duration: 0.5
+      Ease: 9
 --- !u!1 &1494484363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,14 +1903,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1954751285}
-  m_Father: {fileID: 856668302}
+  m_Father: {fileID: 787500621}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 738.1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -156.8}
   m_SizeDelta: {x: 447.27, y: 126.5}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1494484365
 CanvasGroup:
   m_ObjectHideFlags: 0
