@@ -825,7 +825,7 @@ MonoBehaviour:
     Duration: 0.25
     Ease: 9
     IsInitialized: 0
-  closeInstantlyOnStart: 0
+  closeInstantlyOnStart: 1
 --- !u!1 &900773182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,25 +1857,15 @@ MonoBehaviour:
       Ease: 9
   difficultySelectionAnimation:
     FovAnimation:
-      StartValue: 60
+      StartValue: 38
       TargetValue: 60
-      Duration: 0
-      Ease: 0
+      Duration: 0.5
+      Ease: 9
     RotationAnimation:
       StartValue: {x: 0, y: 0, z: 0}
       TargetValue: {x: 350, y: 270, z: 0}
       Duration: 0.75
       Ease: 15
-  startFovAnimation:
-    StartValue: 10
-    TargetValue: 60
-    Duration: 1
-    Ease: 27
-  startRotationAnimation:
-    StartValue: {x: -37.98, y: 90, z: 0}
-    TargetValue: {x: 0, y: 0, z: 0}
-    Duration: 1.25
-    Ease: 9
 --- !u!1 &1494484363
 GameObject:
   m_ObjectHideFlags: 0
@@ -2450,7 +2440,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: -2.1565589e-29}
+  m_BoundingSphereOverride: {x: NaN, y: NaN, z: 7.3341654e+34, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

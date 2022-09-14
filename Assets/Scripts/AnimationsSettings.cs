@@ -1,9 +1,13 @@
+using NaughtyAttributes;
+using UnityEngine;
+
 [System.Serializable]
 public class AnimationSettings<T>
 {
-    public T StartValue;
+    public bool AnimateFromStartValue;
+    [AllowNesting] [ShowIf(nameof(AnimateFromStartValue))] public T StartValue;
     public T TargetValue;
-    [UnityEngine.Space]
+    [Space]
     public float Duration;
     public DG.Tweening.Ease Ease;
 }

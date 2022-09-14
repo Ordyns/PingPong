@@ -10,10 +10,6 @@ public class MenuCamera : MonoBehaviour
     [Space]
     [SerializeField] private CompositeAnimation difficultySelectionAnimation;
 
-    [Header("Start animation")]
-    [SerializeField] private AnimationSettings<float> startFovAnimation;
-    [SerializeField] private AnimationSettings<Vector3> startRotationAnimation;
-
     private void Awake() {
         animator.SetFOV(startAnimation.FovAnimation.StartValue);
         animator.SetRotation(startAnimation.RotationAnimation.StartValue);

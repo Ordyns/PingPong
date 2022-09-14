@@ -12,6 +12,7 @@ public class MenuCameraAnimator : MonoBehaviour
     }
 
     public void AnimateFOV(AnimationSettings<float> animation){
+        DOTween.Kill(_camera);
         _camera.DOFieldOfView(animation.TargetValue, animation.Duration).SetEase(animation.Ease);
     }
 
@@ -20,6 +21,7 @@ public class MenuCameraAnimator : MonoBehaviour
     }
 
     public void AnimateRotation(AnimationSettings<Vector3> animation){
+        DOTween.Kill(cameraParent);
         cameraParent.DORotate(animation.TargetValue, animation.Duration).SetEase(animation.Ease);
     }
 
