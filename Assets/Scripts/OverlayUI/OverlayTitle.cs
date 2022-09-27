@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
@@ -24,7 +23,7 @@ public class OverlayTitle : MonoBehaviour
 
     public void ShowNewTitle(string title, float duration = 0){
         if(string.IsNullOrEmpty(title))
-            throw new ArgumentNullException();
+            return;
 
         if(duration == 0)
             duration = defaultTitleDuration;
